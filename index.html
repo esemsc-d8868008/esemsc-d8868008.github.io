@@ -2,53 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Siyuan Yuan | Personal Website</title>
-  <style>
-    /* Reset基础设置 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
 
+  <style>
+    /* 通用基础设置 */
     body {
+      margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(to right, #74ebd5, #ACB6E5);
       color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      animation: fadeIn 1.5s ease;
+      animation: fadeIn 1.5s ease-in;
+      scroll-behavior: smooth;
     }
 
-    header {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(8px);
+    /* 顶部导航栏 */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .logo {
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
+      box-sizing: border-box;
     }
 
     nav a {
       text-decoration: none;
       color: #333;
-      font-size: 1.1rem;
+      font-weight: bold; /* ✅ 导航加粗 */
+      font-size: 1.2rem; /* ✅ 字体更大 */
+      margin-left: 30px;
       transition: color 0.3s;
     }
 
@@ -56,122 +45,138 @@
       color: #0078d7;
     }
 
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-
-    .menu-toggle span {
-      height: 3px;
-      width: 25px;
-      background: #333;
-      margin: 4px 0;
-      border-radius: 5px;
-    }
-
-    main {
-      padding: 150px 20px 40px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    section {
-      margin-bottom: 80px;
-      scroll-margin-top: 120px;
+    header {
       text-align: center;
+      padding: 180px 20px 100px;
     }
 
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+    }
+
+    /* 通用Section样式 */
+    section {
+      padding: 120px 20px; /* ✅ 更大留白 */
+      text-align: center;
+      scroll-margin-top: 100px;
+    }
+
+    /* 每个模块不同的背景色 */
+    #about {
+      background-color: #f0f8ff; /* 天蓝色淡色背景 */
+    }
+
+    #publications {
+      background-color: #fff0f5; /* 淡粉色背景 */
+    }
+
+    #projects {
+      background-color: #f5fffa; /* 淡绿薄荷色背景 */
+    }
+
+    #contact {
+      background-color: #fffff0; /* 奶油白背景 */
+    }
+
+    /* About区块头像 */
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%; /* 圆形头像 */
+      object-fit: cover;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 页脚 */
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 30px;
       font-size: 0.9rem;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(5px);
-      position: relative;
+      background-color: rgba(255, 255, 255, 0.7);
     }
 
-    /* 淡入动画 */
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    /* 移动端响应式处理 */
+    /* 手机端响应式优化 */
     @media (max-width: 768px) {
       nav {
-        display: none;
         flex-direction: column;
+      }
+      nav div {
         width: 100%;
-        background: rgba(255,255,255,0.95);
+        text-align: center;
+        margin-top: 10px;
       }
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    }
 
-      nav.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: flex;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">Siyuan Yuan</div>
-  <div class="menu-toggle" id="menu-toggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <nav id="nav">
+<!-- 🧭 顶部导航栏 -->
+<nav>
+  <div><strong>Siyuan Yuan</strong></div>
+  <div>
     <a href="#about">About</a>
     <a href="#publications">Publications</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
-  </nav>
+  </div>
+</nav>
+
+<!-- 🎯 页面顶部欢迎区 -->
+<header>
+  <h1>Hello, I'm Siyuan Yuan</h1>
+  <p>Welcome to my personal homepage powered by GitHub Pages.</p>
 </header>
 
-<main>
-  <section id="about">
-    <h2>About Me</h2>
-    <p>I am passionate about machine learning, artificial intelligence, and spatial data science.</p>
-  </section>
+<!-- 👤 About区块（带头像） -->
+<section id="about">
+  <!-- ✅ 替换src为你的头像URL -->
+  <img src="https://via.placeholder.com/150" alt="Your Avatar" class="avatar">
+  <h2>About Me</h2>
+  <p>I am passionate about machine learning, artificial intelligence, and spatial data science.</p>
+</section>
 
-  <section id="publications">
-    <h2>Publications</h2>
-    <p>Coming soon: My research papers and academic contributions.</p>
-  </section>
+<!-- 📚 Publications区块 -->
+<section id="publications">
+  <h2>Publications</h2>
+  <p>Coming soon: my academic publications and research papers.</p>
+</section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <p>Coming soon: Selected projects combining GIS and Machine Learning.</p>
-  </section>
+<!-- 💼 Projects区块 -->
+<section id="projects">
+  <h2>Projects</h2>
+  <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
+</section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-  </section>
-</main>
+<!-- 📬 Contact区块 -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: your.email@example.com</p> <!-- ✅ 请改成你的真实邮箱 -->
+</section>
 
+<!-- 🔚 页脚 -->
 <footer>
   &copy; 2025 Siyuan Yuan. All rights reserved.
 </footer>
 
-<!-- 简单的JS控制汉堡菜单 -->
-<script>
-const menuToggle = document.getElementById('menu-toggle');
-const nav = document.getElementById('nav');
-
-menuToggle.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
-</script>
-
 </body>
 </html>
+
 
 
 
