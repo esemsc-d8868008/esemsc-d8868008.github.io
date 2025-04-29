@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Siyuan Yuan | Personal Website</title>
 
   <style>
-    /* 通用基础设置 */
+    /* 🌟 通用基础设置 */
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,7 +16,7 @@
       scroll-behavior: smooth;
     }
 
-    /* 顶部导航栏 */
+    /* 🧭 固定顶部导航栏 */
     nav {
       position: fixed;
       top: 0;
@@ -35,8 +35,8 @@
     nav a {
       text-decoration: none;
       color: #333;
-      font-weight: bold; /* ✅ 导航加粗 */
-      font-size: 1.2rem; /* ✅ 字体更大 */
+      font-weight: bold; /* ✅ 加粗导航文字 */
+      font-size: 1.2rem;  /* ✅ 字体更大 */
       margin-left: 30px;
       transition: color 0.3s;
     }
@@ -45,6 +45,7 @@
       color: #0078d7;
     }
 
+    /* 🎯 顶部欢迎区（Hero） */
     header {
       text-align: center;
       padding: 180px 20px 100px;
@@ -59,16 +60,21 @@
       font-size: 1.3rem;
     }
 
-    /* 通用Section样式 */
+    /* 📄 通用Section样式（✅ 每块占满屏幕） */
     section {
-      padding: 120px 20px; /* ✅ 更大留白 */
+      min-height: 100vh; /* ✅ 每个部分最少占满一个屏幕高度 */
+      padding: 140px 20px 80px; /* 上下留白，避免被导航栏遮住 */
       text-align: center;
-      scroll-margin-top: 100px;
+      scroll-margin-top: 100px; /* 锚点跳转时留出导航高度 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* ✅ 内容垂直居中 */
+      align-items: center;
     }
 
-    /* 每个模块不同的背景色 */
+    /* 🎨 每块不同背景色 */
     #about {
-      background-color: #f0f8ff; /* 天蓝色淡色背景 */
+      background-color: #f0f8ff; /* 天蓝色背景 */
     }
 
     #publications {
@@ -76,24 +82,24 @@
     }
 
     #projects {
-      background-color: #f5fffa; /* 淡绿薄荷色背景 */
+      background-color: #f5fffa; /* 薄荷绿色背景 */
     }
 
     #contact {
       background-color: #fffff0; /* 奶油白背景 */
     }
 
-    /* About区块头像 */
+    /* 👤 About区块头像样式 */
     .avatar {
       width: 150px;
       height: 150px;
-      border-radius: 50%; /* 圆形头像 */
+      border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* 页脚 */
+    /* 🔚 页脚样式 */
     footer {
       text-align: center;
       padding: 30px;
@@ -101,7 +107,7 @@
       background-color: rgba(255, 255, 255, 0.7);
     }
 
-    /* 手机端响应式优化 */
+    /* 📱 移动端自适应布局 */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -117,6 +123,7 @@
       }
     }
 
+    /* 🎬 页面淡入动画 */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -137,24 +144,19 @@
   </div>
 </nav>
 
-<!-- 🎯 页面顶部欢迎区 -->
+<!-- 🎯 首页欢迎区 -->
 <header>
   <h1>Hello, I'm Siyuan Yuan</h1>
-  <p>Welcome to my personal homepage.</p>
+  <p>Welcome to my personal homepage powered by GitHub Pages.</p>
 </header>
 
-<!-- 👤 About区块（带头像） -->
+<!-- 👤 About区块（含头像+详细英文介绍） -->
 <section id="about">
-  <!-- ✅ 替换src为你的头像URL -->
-  <img src="https://via.placeholder.com/150" alt="Your Avatar" class="avatar">
+  <img src="https://via.placeholder.com/150" alt="Your Avatar" class="avatar"> <!-- ✅ 替换成你的照片链接 -->
   <h2>About Me</h2>
-  <p>I graduated with a bachelor's degree in Geographic Information Science from Jilin University, 
-     and I will soon begin my postgraduate studies at Imperial College London. I am deeply interested
-     in the fields of machine learning and artificial intelligence, and I plan to pursue a PhD in this
-     area in the future. 
-     Before starting my postgraduate program, I am currently working at China C&S Software Co., Ltd. as
-     a data analyst. At the same time, I am also exploring the intersection of large AI models and 
-     geographic information science. Thank you for your attention.</p>
+  <p style="max-width: 800px; margin: 20px auto; line-height: 1.6;">
+    I graduated with a bachelor's degree in Geographic Information Science from Jilin University, and I will soon begin my postgraduate studies at Imperial College London. I am deeply interested in the fields of machine learning and artificial intelligence, and I plan to pursue a PhD in this area in the future. Before starting my postgraduate program, I am currently working at China C&S Software Co., Ltd. as a data analyst. At the same time, I am also exploring the intersection of large AI models and geographic information science. Thank you for your attention.
+  </p>
 </section>
 
 <!-- 📚 Publications区块 -->
@@ -172,7 +174,7 @@
 <!-- 📬 Contact区块 -->
 <section id="contact">
   <h2>Contact</h2>
-  <p>Email: your.email@example.com</p> <!-- ✅ 请改成你的真实邮箱 -->
+  <p>Email: your.email@example.com</p> <!-- ✅ 改成你的真实邮箱 -->
 </section>
 
 <!-- 🔚 页脚 -->
@@ -182,6 +184,7 @@
 
 </body>
 </html>
+
 
 
 
