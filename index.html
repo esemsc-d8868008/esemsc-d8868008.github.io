@@ -35,8 +35,8 @@
     nav a {
       text-decoration: none;
       color: #333;
-      font-weight: bold; /* ✅ 加粗导航文字 */
-      font-size: 1.2rem;  /* ✅ 字体更大 */
+      font-weight: bold;
+      font-size: 1.2rem;
       margin-left: 30px;
       transition: color 0.3s;
     }
@@ -45,10 +45,15 @@
       color: #0078d7;
     }
 
-    /* 🎯 顶部欢迎区（Hero） */
+    /* 🎯 顶部欢迎区（Hero），现在也占满一屏 */
     header {
+      min-height: 100vh; /* ✅ 占满整个屏幕高度 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* ✅ 内容垂直居中 */
+      align-items: center;
+      padding: 120px 20px 60px; /* ✅ 顶部稍微留一点避免被遮挡 */
       text-align: center;
-      padding: 180px 20px 100px;
     }
 
     header h1 {
@@ -60,19 +65,19 @@
       font-size: 1.3rem;
     }
 
-    /* 📄 通用Section样式（✅ 每块占满屏幕） */
+    /* 📄 通用Section样式（每个部分占满屏幕） */
     section {
-      min-height: 100vh; /* ✅ 每个部分最少占满一个屏幕高度 */
-      padding: 140px 20px 80px; /* 上下留白，避免被导航栏遮住 */
+      min-height: 100vh;
+      padding: 140px 20px 80px;
       text-align: center;
-      scroll-margin-top: 100px; /* 锚点跳转时留出导航高度 */
+      scroll-margin-top: 100px;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* ✅ 内容垂直居中 */
+      justify-content: center;
       align-items: center;
     }
 
-    /* 🎨 每块不同背景色 */
+    /* 🎨 各区块不同背景色 */
     #about {
       background-color: #f0f8ff; /* 天蓝色背景 */
     }
@@ -99,7 +104,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* 🔚 页脚样式 */
+    /* 🔚 页脚 */
     footer {
       text-align: center;
       padding: 30px;
@@ -107,7 +112,7 @@
       background-color: rgba(255, 255, 255, 0.7);
     }
 
-    /* 📱 移动端自适应布局 */
+    /* 📱 移动端自适应 */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -144,37 +149,37 @@
   </div>
 </nav>
 
-<!-- 🎯 首页欢迎区 -->
+<!-- 🎯 欢迎区（Hero Section） -->
 <header>
   <h1>Hello, I'm Siyuan Yuan</h1>
   <p>Welcome to my personal homepage powered by GitHub Pages.</p>
 </header>
 
-<!-- 👤 About区块（含头像+详细英文介绍） -->
+<!-- 👤 About Section -->
 <section id="about">
-  <img src="https://via.placeholder.com/150" alt="Your Avatar" class="avatar"> <!-- ✅ 替换成你的照片链接 -->
+  <img src="https://via.placeholder.com/150" alt="Your Avatar" class="avatar">
   <h2>About Me</h2>
   <p style="max-width: 800px; margin: 20px auto; line-height: 1.6;">
     I graduated with a bachelor's degree in Geographic Information Science from Jilin University, and I will soon begin my postgraduate studies at Imperial College London. I am deeply interested in the fields of machine learning and artificial intelligence, and I plan to pursue a PhD in this area in the future. Before starting my postgraduate program, I am currently working at China C&S Software Co., Ltd. as a data analyst. At the same time, I am also exploring the intersection of large AI models and geographic information science. Thank you for your attention.
   </p>
 </section>
 
-<!-- 📚 Publications区块 -->
+<!-- 📚 Publications Section -->
 <section id="publications">
   <h2>Publications</h2>
   <p>Coming soon: my academic publications and research papers.</p>
 </section>
 
-<!-- 💼 Projects区块 -->
+<!-- 💼 Projects Section -->
 <section id="projects">
   <h2>Projects</h2>
   <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
 </section>
 
-<!-- 📬 Contact区块 -->
+<!-- 📬 Contact Section -->
 <section id="contact">
   <h2>Contact</h2>
-  <p>Email: your.email@example.com</p> <!-- ✅ 改成你的真实邮箱 -->
+  <p>Email: your.email@example.com</p> <!-- ✅ 替换为你自己的邮箱 -->
 </section>
 
 <!-- 🔚 页脚 -->
@@ -184,6 +189,7 @@
 
 </body>
 </html>
+
 
 
 
