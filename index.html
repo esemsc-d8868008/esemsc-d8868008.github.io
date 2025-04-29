@@ -2,10 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Welcome to My Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Siyuan Yuan | Personal Website</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      color: #333;
+      animation: fadeIn 2s ease-in;
+    }
+    nav {
+      background-color: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      margin-left: 20px;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #0078d7;
+    }
+    header {
+      text-align: center;
+      padding: 100px 20px;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  </style>
 </head>
 <body>
+
+<nav>
+  <div><strong>Siyuan Yuan</strong></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header>
   <h1>Hello, I'm Siyuan Yuan</h1>
-  <p>This is my personal homepage.</p>
+  <p>Welcome to my personal homepage powered by GitHub Pages.</p>
+</header>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>I am passionate about machine learning, artificial intelligence, and spatial data science.</p>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <p>Coming soon! 🚀 Stay tuned for exciting updates.</p>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: your.email@example.com</p>
+</section>
+
+<footer>
+  &copy; 2025 Siyuan Yuan. All rights reserved.
+</footer>
+
 </body>
 </html>
+
