@@ -1,136 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- 设置页面字符集 -->
-  <meta charset="UTF-8">
-  <!-- 设置移动端浏览器适配 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- 网页标题：显示在浏览器标签页上（✅ 可改） -->
+  <!-- 设置网页字符集为UTF-8 -->
+  <meta charset="UTF-8" />
+  <!-- 设置移动端适配，宽度随设备变化 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 页面标题（✅ 可修改）-->
   <title>Siyuan Yuan | Personal Website</title>
 
-  <!-- 🔧 页面样式定义（CSS） -->
+  <!-- 🔧 内部CSS，定义整体页面样式 -->
   <style>
-    /* 页面基础样式：全局字体、背景渐变色、动画等 */
+    /* 🌟 页面全局基础设置 */
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ✅ 可换成自己喜欢的字体 */
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);       /* ✅ 可修改渐变背景色 */
-      color: #333;                                                  /* ✅ 可设置字体颜色 */
-      animation: fadeIn 2s ease-in;                                 /* 页面淡入动画效果 */
+      margin: 0; /* 取消默认外边距 */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* ✅ 可更换字体 */
+      background: linear-gradient(to right, #74ebd5, #ACB6E5); /* ✅ 背景渐变色，可修改 */
+      color: #333; /* ✅ 全局字体颜色 */
+      animation: fadeIn 2s ease-in; /* 页面进入时淡入动画 */
     }
 
-    /* 顶部导航栏样式 */
+    /* 🧭 顶部固定导航栏样式 */
     nav {
-      background-color: rgba(255, 255, 255, 0.8); /* ✅ 半透明背景可调整透明度 */
-      backdrop-filter: blur(10px);                /* ✅ 毛玻璃模糊效果 */
-      padding: 1rem 2rem;                         /* ✅ 导航内边距大小 */
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);     /* ✅ 阴影样式可改 */
+      position: fixed; /* 固定在页面顶部，不随滚动条移动 */
+      top: 0;
+      width: 100%;
+      z-index: 1000; /* 置顶层级，避免被其他内容遮挡 */
+      background-color: rgba(255, 255, 255, 0.9); /* ✅ 半透明背景，可调整透明度 */
+      backdrop-filter: blur(10px); /* ✅ 背景模糊效果，显得高级 */
+      padding: 1rem 2rem; /* 内边距 */
+      display: flex; /* Flex 布局 */
+      justify-content: space-between; /* 左右两边分开 */
+      align-items: center; /* 垂直居中 */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ✅ 底部阴影，可美化导航栏 */
     }
 
-    /* 导航链接样式 */
+    /* 🔗 导航栏中的链接样式 */
     nav a {
-      text-decoration: none;
-      color: #333;                                /* ✅ 链接文字颜色 */
+      text-decoration: none; /* 去掉下划线 */
+      color: #333; /* ✅ 链接文字颜色 */
       font-weight: bold;
-      margin-left: 20px;
-      transition: color 0.3s;
+      margin-left: 25px; /* 链接之间间距 */
+      font-size: 1.1rem; /* ✅ 字体更大 */
+      transition: color 0.3s; /* 悬浮变色动画 */
     }
 
+    /* 🔗 悬浮在链接上时颜色变化 */
     nav a:hover {
-      color: #0078d7;                             /* ✅ 鼠标悬浮链接变色 */
+      color: #0078d7; /* ✅ 悬浮时变蓝色 */
     }
 
-    /* 头部主标题样式 */
+    /* 🎯 页面头部（主标题+副标题） */
     header {
       text-align: center;
-      padding: 100px 20px;                        /* ✅ 控制顶部留白空间 */
+      padding: 160px 20px 100px; /* ✅ 顶部留足够空隙，避免被导航栏遮挡 */
     }
 
     header h1 {
-      font-size: 3rem;                            /* ✅ 主标题大小 */
+      font-size: 3rem; /* ✅ 主标题字体大小 */
       margin-bottom: 20px;
     }
 
     header p {
-      font-size: 1.2rem;                          /* ✅ 副标题文字大小 */
+      font-size: 1.2rem; /* ✅ 副标题字体大小 */
     }
 
-    /* 各内容段落样式（About / Projects / Contact） */
+    /* 📄 每一个内容模块（section）的通用样式 */
     section {
-      padding: 60px 20px;                         /* ✅ 控制每个模块上下空隙 */
+      padding: 80px 20px; /* 上下内边距 */
       text-align: center;
+      scroll-margin-top: 100px; /* ✅ 点击锚点跳转时留出距离，防止被导航栏挡住 */
     }
 
-    /* 页面淡入关键帧动画 */
+    /* 🎬 页面淡入关键帧动画 */
     @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
-    /* 页脚版权样式 */
+    /* 📜 页脚样式 */
     footer {
       text-align: center;
       padding: 20px;
-      font-size: 0.9rem;                          /* ✅ 字号可改 */
-      background-color: rgba(255, 255, 255, 0.5); /* ✅ 页脚背景颜色 */
+      font-size: 0.9rem; /* ✅ 页脚字体大小 */
+      background-color: rgba(255, 255, 255, 0.5); /* ✅ 页脚背景色，半透明 */
     }
   </style>
 </head>
 
 <body>
 
-<!-- 🧭 导航栏区域 -->
+<!-- 🧭 固定在顶部的导航栏部分 -->
 <nav>
-  <!-- ✅ 可修改为你的名字/品牌名/logo -->
-  <div><strong>Siyuan Yuan</strong></div>
+  <div><strong>Siyuan Yuan</strong></div> <!-- ✅ 这里是你的名字Logo，可以修改 -->
   <div>
-    <!-- ✅ 修改锚点标题文字 -->
+    <!-- ✅ 修改导航栏的各项标题，跳转到下方锚点 -->
     <a href="#about">About</a>
+    <a href="#publications">Publications</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- 🎯 页面头部区域 -->
+<!-- 🎯 页面最上方介绍模块 -->
 <header>
-  <!-- ✅ 修改为你自己的欢迎语 -->
+  <!-- ✅ 修改为你的欢迎语 -->
   <h1>Hello, I'm Siyuan Yuan</h1>
-  <!-- ✅ 副标题介绍 -->
+  <!-- ✅ 修改为你的副标题或个人格言 -->
   <p>Welcome to my personal homepage powered by GitHub Pages.</p>
 </header>
 
-<!-- 👤 关于我模块 -->
+<!-- 👤 About模块（介绍自己） -->
 <section id="about">
   <h2>About Me</h2>
-  <!-- ✅ 可写上你的个人简介、学历、专业、研究兴趣等 -->
+  <!-- ✅ 修改为你的个人简介，比如兴趣、研究方向、经历 -->
   <p>I am passionate about machine learning, artificial intelligence, and spatial data science.</p>
 </section>
 
-<!-- 💼 项目展示模块 -->
+<!-- 📚 Publications模块（发表论文） -->
+<section id="publications">
+  <h2>Publications</h2>
+  <!-- ✅ 后续可以列举自己的学术论文或者出版物 -->
+  <p>Coming soon: my academic publications and research papers.</p>
+</section>
+
+<!-- 💼 Projects模块（项目作品） -->
 <section id="projects">
   <h2>Projects</h2>
-  <!-- ✅ 后续可以替换为项目列表或卡片式展示 -->
-  <p>Coming soon! 🚀 Stay tuned for exciting updates.</p>
+  <!-- ✅ 列举自己做过的项目、比赛经历等 -->
+  <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
 </section>
 
-<!-- 📫 联系方式模块 -->
+<!-- 📬 Contact模块（联系方式） -->
 <section id="contact">
   <h2>Contact</h2>
-  <!-- ✅ 请填写你的有效邮箱地址 -->
-  <p>Email: your.email@example.com</p>
+  <!-- ✅ 改成你的真实邮箱或社交账号 -->
+  <p>Email: yuansy0220@gmail.com</p>
 </section>
 
-<!-- 🔚 页面底部版权信息 -->
+<!-- 🔚 页脚（版权信息） -->
 <footer>
-  <!-- ✅ 可修改为你自己的名字和年份 -->
+  <!-- ✅ 修改年份和名字 -->
   &copy; 2025 Siyuan Yuan. All rights reserved.
 </footer>
 
 </body>
 </html>
+
 
 
 
