@@ -54,15 +54,54 @@
       align-items: center;
       padding: 120px 20px 60px; /* ✅ 顶部稍微留一点避免被遮挡 */
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* 添加背景图片和虚化效果 */
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('images/header-bg.jpg'); /* 替换为您的图片 */
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+    }
+
+    /* 动画触发器 - 使用IntersectionObserver动态添加 */
+    header.visible::before {
+      opacity: 1;
     }
 
     header h1 {
       font-size: 3rem;
       margin-bottom: 20px;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
     }
 
     header p {
       font-size: 1.5rem;
+      color: white;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s;
+    }
+
+    header.visible h1,
+    header.visible p {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* 📄 通用Section样式（每个部分占满屏幕） */
@@ -75,26 +114,82 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 为每个section添加背景图片和虚化效果 */
+    section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(5px);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 1.5s ease 0.8s; /* 延迟背景淡入 */
+    }
+
+    /* 为每个section添加遮罩层，提高可读性 */
+    section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.5); /* 半透明白色遮罩 */
+      z-index: -1;
+    }
+
+    /* 使section内容在动画中淡入 */
+    section h2,
+    section .content {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    section.visible h2 {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section.visible .content {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.4s; /* 内容在标题后淡入 */
+    }
+
+    section.visible::before {
+      opacity: 1;
+    }
+
+    /* 🎨 各区块不同背景图片 */
+    #about::before {
+      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+    }
+
+    #publications::before {
+      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+    }
+
+    #projects::before {
+      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+    }
+
+    #contact::before {
+      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
     }
     
     /* Contact section - shorter height */
     #contact {
       min-height: 50vh; /* Reduced from 100vh to 50vh */
       padding: 100px 20px 60px; /* Reduced padding */
-      background-color: #fff0f5;/* 奶油白背景 */
-    }
-
-    /* 🎨 各区块不同背景色 */
-    #about {
-      background-color: #f0f8ff; /* 天蓝色背景 */
-    }
-
-    #publications {
-      background-color:  #fffff0;  /* 淡粉色背景 */
-    }
-
-    #projects {
-      background-color:  #f5fffa;/* 粉薄荷绿色背景 */
     }
 
     /* 👤 About区块头像样式 */
@@ -105,6 +200,14 @@
       object-fit: cover;
       margin-bottom: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
+    }
+
+    section.visible .avatar {
+      opacity: 1;
+      transform: scale(1);
     }
 
     /* 🔚 页脚 */
@@ -160,10 +263,10 @@
 
 <!-- 👤 About Section -->
 <section id="about">
-  <img src="eed228bcc537e777298562b250e3789.jpg" alt="Your Avatar" class="avatar">
+  <img src="images/my-photo.jpg" alt="Siyuan Yuan" class="avatar">
   <h2 style="font-size: 2rem;">About Me</h2>
 
-  <div style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.4; font-size: 1.1rem;">
+  <div class="content" style="text-align: left; max-width: 800px; margin: 0 auto; line-height: 1.4; font-size: 1.1rem;">
     <p style="margin-bottom: 10px;">
       2020.9 ~ 2024.6：Geographic Information Science from Jilin University, China
     </p>
@@ -184,32 +287,67 @@
 
 <!-- 📚 Publications Section -->
 <section id="publications">
-  <h2 style = "font-size: 2rem;">Publications</h2>
-  <p style="max-width: 800px; margin: 20px auto; line-height: 1.8; font-size:1.2rem">
-    Coming soon: my academic publications and research papers.
-  </p>
+  <h2 style="font-size: 2rem;">Publications</h2>
+  <div class="content" style="max-width: 800px; margin: 20px auto; line-height: 1.8; font-size:1.2rem">
+    <p>Coming soon: my academic publications and research papers.</p>
+  </div>
 </section>
 
 <!-- 💼 Projects Section -->
 <section id="projects">
-  <h2 style = "font-size: 2rem; ">Projects</h2>
-  <p style="max-width: 800px; margin: 20px auto; line-height: 1.8; font-size:1.2rem">
-    Coming soon: selected projects with machine learning and geospatial analysis.
-  </p>
+  <h2 style="font-size: 2rem;">Projects</h2>
+  <div class="content" style="max-width: 800px; margin: 20px auto; line-height: 1.8; font-size:1.2rem">
+    <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
+  </div>
 </section>
 
 <!-- 📬 Contact Section - Now with reduced height -->
 <section id="contact">
-  <h2 style="font-size: 2rem; margin-bottom: 19px;">Contact</h2>
-  <p style="max-width: 800px; margin: 0 auto; line-height: 1.5; font-size:1.2rem">
-    Email: yuansy0220@gmail.com
-  </p> <!-- ✅ 替换为你自己的邮箱 -->
+  <h2 style="font-size: 2rem; margin-bottom: 15px;">Contact</h2>
+  <div class="content" style="max-width: 800px; margin: 0 auto; line-height: 1.5; font-size:1.2rem">
+    <p>Email: yuansy0220@gmail.com</p>
+  </div>
 </section>
 
 <!-- 🔚 页脚 -->
 <footer>
   &copy; 2025 Siyuan Yuan. All rights reserved.
 </footer>
+
+<!-- JavaScript for Intersection Observer to trigger animations -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // 获取所有需要观察的元素
+    const sections = document.querySelectorAll('section, header');
+    
+    // 创建Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // 当元素进入视窗
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          // 如果希望元素离开视窗后重置动画，取消下面的注释
+          // entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0.2 // 元素可见20%时触发
+    });
+    
+    // 观察每个section和header
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+    
+    // 初始化时触发首屏动画
+    if (document.querySelector('header')) {
+      setTimeout(() => {
+        document.querySelector('header').classList.add('visible');
+      }, 100);
+    }
+  });
+</script>
 
 </body>
 </html>
