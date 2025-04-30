@@ -22,7 +22,7 @@
       top: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.9); /* 保持原有的高透明度白色背景 */
       backdrop-filter: blur(10px);
       padding: 1rem 2rem;
       display: flex;
@@ -56,7 +56,7 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      background-color: rgba(0, 0, 0, 0.5);
+      /* 移除了深色背景 */
     }
 
     /* 添加背景图片和虚化效果 */
@@ -76,6 +76,18 @@
       transition: opacity 1.5s ease;
     }
 
+    /* 为header添加明亮的遮罩层 */
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.6); /* 明亮的白色遮罩 */
+      z-index: -1;
+    }
+
     /* 动画触发器 - 使用IntersectionObserver动态添加 */
     header.visible::before {
       opacity: 1;
@@ -84,7 +96,7 @@
     header h1 {
       font-size: 3rem;
       margin-bottom: 20px;
-      color: white;
+      color: #333; /* 恢复为深色文字 */
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 1.2s ease, transform 1.2s ease;
@@ -92,7 +104,7 @@
 
     header p {
       font-size: 1.5rem;
-      color: white;
+      color: #333; /* 恢复为深色文字 */
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 1.2s ease 0.3s, transform 1.2s ease 0.3s;
@@ -142,7 +154,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.5); /* 半透明白色遮罩 */
+      background-color: rgba(255, 255, 255, 0.75); /* 增加透明度使背景更亮 */
       z-index: -1;
     }
 
@@ -171,19 +183,19 @@
 
     /* 🎨 各区块不同背景图片 */
     #about::before {
-      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+      background-image: url('images/about-bg.jpg'); /* 替换为您的图片 */
     }
 
     #publications::before {
-      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+      background-image: url('images/publications-bg.jpg'); /* 替换为您的图片 */
     }
 
     #projects::before {
-      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+      background-image: url('images/projects-bg.jpg'); /* 替换为您的图片 */
     }
 
     #contact::before {
-      background-image: url('eed228bcc537e777298562b250e3789.jpg'); /* 替换为您的图片 */
+      background-image: url('images/contact-bg.jpg'); /* 替换为您的图片 */
     }
     
     /* Contact section - shorter height */
@@ -351,7 +363,6 @@
 
 </body>
 </html>
-
 
 
 
