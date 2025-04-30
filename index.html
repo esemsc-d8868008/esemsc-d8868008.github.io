@@ -6,138 +6,190 @@
   <title>Siyuan Yuan | Personal Website</title>
 
   <style>
+    /* ─── 可配置变量（修改这里即可调整全站） ─── */
+    :root {
+      /* 主题字体 & 背景渐变 */
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --page-bg: linear-gradient(to right, #74ebd5, #ACB6E5);
+
+      /* 导航栏 */
+      --nav-bg: rgba(255,255,255,0.9);
+      --nav-padding: 1rem;
+      --nav-link-size: 1.2rem;
+      --nav-link-margin: 1rem;
+
+      /* 背景虚化半径 */
+      --blur-radius: 5px;
+
+      /* 背景图路径 */
+      --header-bg: url('images/header-bg.jpg');
+      --about-bg:  url('黄昏山间.jpg');
+      --pub-bg:    url('微信图片_20250430144608.jpg');
+      --proj-bg:   url('风景1.jpg');
+
+      /* Contact 纯色背景 */
+      --contact-bg: #fff9e6;
+
+      /* 动画时长 */
+      --anim-fast: 1s;
+      --anim-slow: 1.5s;
+      --anim-delay: 0.4s;
+    }
+
+    /* ─── 全局基础 ─── */
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      font-family: var(--font-family);
+      background: var(--page-bg);
       color: #333;
       scroll-behavior: smooth;
     }
 
-    /* 🧭 顶部导航栏 */
+    /* ─── 顶部导航栏 ─── */
     nav {
       position: fixed;
-      top: 0; width: 100%; z-index: 1000;
-      background: rgba(255,255,255,0.9);
+      top: 0; left: 0; width: 100%;
+      z-index: 1000;
+      background: var(--nav-bg);
       backdrop-filter: blur(10px);
-      padding: 1rem;
-      display: flex; flex-wrap: wrap;
-      justify-content: space-between; align-items: center;
+      padding: var(--nav-padding);
+      display: flex;
+      flex-wrap: wrap;             /* 窄屏自动换行 */
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       box-sizing: border-box;
     }
     .nav-links {
-      display: flex; flex-wrap: wrap;
+      display: flex;
+      flex-wrap: wrap;
     }
     nav a {
       text-decoration: none;
-      color: #333; font-weight: bold;
-      font-size: 1.2rem;
-      margin: 0 1rem;
+      color: #333;
+      font-weight: bold;
+      font-size: var(--nav-link-size);
+      margin: 0 var(--nav-link-margin);
       transition: color 0.3s;
     }
     nav a:hover { color: #0078d7; }
 
-    /* 🎯 Hero 区 */
+    /* ─── 入口淡入动画 ─── */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .visible { /* IntersectionObserver 添加的 class */
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    /* ─── Hero 欢迎区 ─── */
     header {
       min-height: 100vh;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
       padding: 120px 20px 60px;
-      text-align: center;
       position: relative; overflow: hidden;
+      text-align: center;
     }
+    /* 背景图层 */
     header::before {
       content: "";
       position: absolute; top:0; left:0;
       width:100%; height:100%;
-      background-image: url('images/header-bg.jpg');
-      background-size: cover; background-position: center;
+      background: var(--header-bg) center/cover no-repeat;
       z-index: -1;
-      opacity: 0; transition: opacity 1.5s ease;
+      opacity:0;
+      transition: opacity var(--anim-slow) ease;
     }
     header.visible::before { opacity: 1; }
+    /* 文本淡入 */
     header h1, header p {
-      color: #333;
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 1.2s ease, transform 1.2s ease;
+      opacity:0;
+      transform: translateY(20px);
+      transition:
+        opacity var(--anim-fast) ease,
+        transform var(--anim-fast) ease;
     }
     header.visible h1, header.visible p {
-      opacity: 1; transform: translateY(0);
+      opacity:1; transform: translateY(0);
     }
 
-    /* 📄 通用 Section */
+    /* ─── 通用 Section ─── */
     section {
       min-height: 100vh;
       padding: 140px 20px 80px;
-      text-align: center;
-      scroll-margin-top: 100px;
+      position: relative; overflow: hidden;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      position: relative; overflow: hidden;
+      text-align: center;
+      scroll-margin-top: 100px;
     }
+    /* 背景图 + 虚化 */
     section::before {
       content: "";
       position: absolute; top:0; left:0;
       width:100%; height:100%;
-      background-size: cover; background-position: center;
-      filter: blur(5px);
+      background-size: cover;
+      background-position: center;
+      filter: blur(var(--blur-radius));
       z-index: -1;
-      opacity: 0; transition: opacity 1.5s ease 0.8s;
+      opacity:0;
+      transition: opacity var(--anim-fast) ease var(--anim-delay);
     }
+    /* 半透明遮罩 提高文字可读性 */
     section::after {
       content: "";
       position: absolute; top:0; left:0;
       width:100%; height:100%;
-      background-color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.75);
       z-index: -1;
     }
-    section h2, section .content {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
+    /* 标题 & 内容淡入 */
+    section h2, section .content, .avatar {
+      opacity:0;
+      transform: translateY(20px);
+      transition:
+        opacity var(--anim-fast) ease,
+        transform var(--anim-fast) ease;
     }
     section.visible::before,
     section.visible h2,
-    section.visible .content {
-      opacity: 1; transform: translateY(0);
+    section.visible .content,
+    section.visible .avatar {
+      opacity:1; transform: translateY(0);
     }
 
-    /* 🎨 恢复你的原始背景图路径 */
-    #about::before       { background-image: url('黄昏山间.jpg'); }
-    #publications::before{ background-image: url('微信图片_20250430144608.jpg'); }
-    #projects::before    { background-image: url('风景1.jpg'); }
+    /* ─── 各区块背景图路径（务必保留中文名也能识别） ─── */
+    #about::before       { background-image: var(--about-bg); }
+    #publications::before{ background-image: var(--pub-bg); }
+    #projects::before    { background-image: var(--proj-bg); }
 
-    /* ✅ Contact 区块：淡黄色背景，无虚化 */
+    /* ─── Contact 区块：纯色背景，无背景图 ─── */
     #contact {
       min-height: 50vh;
       padding: 100px 20px 60px;
-      background-color: #fff9e6;
+      background-color: var(--contact-bg);
       position: relative; z-index: 0;
     }
 
-    /* 👤 Avatar 动画 */
+    /* ─── 头像样式 ─── */
     .avatar {
-      width: 150px; height: 150px;
-      border-radius: 50%; object-fit: cover;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      opacity: 0; transform: scale(0.8);
-      transition: opacity 1s ease 0.6s, transform 1s ease 0.6s;
-    }
-    section.visible .avatar {
-      opacity: 1; transform: scale(1);
+      width: 150px; height:150px;
+      border-radius:50%; object-fit:cover;
+      margin-bottom:20px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* 页脚 */
+    /* ─── 页脚 & 响应式 ─── */
     footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9rem;
-      background-color: rgba(255,255,255,0.7);
+      text-align:center;
+      padding:30px;
+      font-size:0.9rem;
+      background: rgba(255,255,255,0.7);
     }
-
-    /* 📱 响应式 */
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       nav { flex-direction: column; }
       .nav-links { justify-content: center; width:100%; }
       nav a { margin: 0.5rem; }
@@ -146,72 +198,83 @@
 </head>
 <body>
 
-<nav>
-  <div><strong>Siyuan Yuan</strong></div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#publications">Publications</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+  <!-- ─── 导航栏 ─── -->
+  <nav>
+    <div><strong>Siyuan Yuan</strong></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<header>
-  <h1 style="font-size:3rem;">Hello, I'm Siyuan Yuan</h1>
-  <p style="font-size:1.4rem;">Welcome to my personal homepage.</p>
-</header>
+  <!-- ─── Hero 欢迎区 ─── -->
+  <header>
+    <h1>Hello, I'm Siyuan Yuan</h1>        <!-- 可修改文字 -->
+    <p>Welcome to my personal homepage.</p><!-- 可修改文字 -->
+  </header>
 
-<section id="about">
-  <img src="背景2.jpg" alt="Siyuan Yuan" class="avatar">
-  <h2 style="font-size:2rem;">About Me</h2>
-  <div class="content" style="text-align:left; max-width:800px; margin:0 auto; line-height:1.4; font-size:1.1rem;">
-    <p>2020.9 ~ 2024.6：Geographic Information Science from Jilin University, China</p>
-    <p>2025.4 ~ 2025.9：Data Analyst in Sinosoft Company Limited, China</p>
-    <p>2025.9 ~ 2026.11：Environmental Data Science and Machine Learning from Imperial College London</p>
-    <p>I am deeply interested in the fields of machine learning and artificial intelligence, and I plan to pursue a PhD in this area in the future. Before starting my postgraduate program, I am currently working at China Sinosoft Co., Ltd. as a data analyst. At the same time, I am also exploring the intersection of large AI models and geographic information science. Thank you for your attention.</p>
-  </div>
-</section>
+  <!-- ─── About 区块 ─── -->
+  <section id="about">
+    <!-- 换成你的头像路径（可替换中文名） -->
+    <img src="背景2.jpg" alt="Siyuan Yuan" class="avatar">
+    <h2>About Me</h2><!-- 可修改标题 -->
+    <div class="content">
+      <!-- 可编辑内容：时间线、简介等 -->
+      <p>2020.9 ~ 2024.6：Geographic Information Science from Jilin University, China</p>
+      <p>2025.4 ~ 2025.9：Data Analyst in Sinosoft Company Limited, China</p>
+      <p>2025.9 ~ 2026.11：Environmental Data Science and Machine Learning from Imperial College London</p>
+      <p>I am deeply interested in machine learning and AI, and plan to pursue a PhD ...</p>
+    </div>
+  </section>
 
-<section id="publications">
-  <h2 style="font-size:2rem;">Publications</h2>
-  <div class="content" style="max-width:800px; margin:20px auto; line-height:1.8; font-size:1.2rem;">
-    <p>Coming soon: my academic publications and research papers.</p>
-  </div>
-</section>
+  <!-- ─── Publications 区块 ─── -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="content">
+      <p>Coming soon: my academic publications and research papers.</p>
+    </div>
+  </section>
 
-<section id="projects">
-  <h2 style="font-size:2rem;">Projects</h2>
-  <div class="content" style="max-width:800px; margin:20px auto; line-height:1.8; font-size:1.2rem;">
-    <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
-  </div>
-</section>
+  <!-- ─── Projects 区块 ─── -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="content">
+      <p>Coming soon: selected projects with machine learning and geospatial analysis.</p>
+    </div>
+  </section>
 
-<section id="contact">
-  <h2 style="font-size:2rem; margin-bottom:15px;">Contact</h2>
-  <div class="content" style="max-width:800px; margin:0 auto; line-height:1.5; font-size:1.2rem;">
-    <p>Email: yuansy0220@gmail.com</p>
-  </div>
-</section>
+  <!-- ─── Contact 区块 ─── -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="content">
+      <p>Email: yuansy0220@gmail.com</p>  <!-- 替换为你的邮箱 -->
+    </div>
+  </section>
 
-<footer>
-  &copy; 2025 Siyuan Yuan. All rights reserved.
-</footer>
+  <!-- ─── 页脚 ─── -->
+  <footer>
+    &copy; 2025 Siyuan Yuan. All rights reserved.
+  </footer>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const els = document.querySelectorAll("section, header");
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add("visible");
-      });
-    }, { threshold: 0.2 });
-    els.forEach(el => obs.observe(el));
-    setTimeout(() => document.querySelector("header")?.classList.add("visible"), 100);
-  });
-</script>
-
+  <!-- ─── Intersection Observer 控制淡入 ─── -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const targets = document.querySelectorAll("header, section");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add("visible");
+        });
+      }, { threshold: 0.2 });
+      targets.forEach(t => io.observe(t));
+      // 首屏淡入
+      setTimeout(() => document.querySelector("header")?.classList.add("visible"), 100);
+    });
+  </script>
 </body>
 </html>
+
 
 
 
